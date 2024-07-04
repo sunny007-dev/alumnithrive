@@ -1,0 +1,20 @@
+::placeholder {
+    font-size: var(--font-S-13)
+  }
+  .closeBtn {
+    i {
+      font-size: var(--font-S-24);
+      color: var(--bs-red);
+    }
+  }
+  .fieldset {
+    position: relative;
+    .form-label {
+      position: absolute;
+      top: -15px;
+      left: 20px;
+      background: #fff;
+      color: #ababab;
+      padding: 0 5px;
+  }
+  }

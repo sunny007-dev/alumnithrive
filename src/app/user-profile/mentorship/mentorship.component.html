@@ -1,0 +1,241 @@
+<div class="row">
+    <div class="col-lg-12">
+        <app-loader *ngIf="loading"></app-loader>
+        <ng-container *ngIf="!loading">
+            <form [formGroup]="mentorForm" (ngSubmit)="edit()">
+
+                <div class="row">
+
+                    <div class="fieldset col-xl-4 col-lg-4 col-md-4 my-xl-3 my-lg-3 my-3">
+                        <label class="form-label fw-bold">Willing to provide mentorship
+                            <span class="text-danger">*</span>
+                        </label>
+                        <select class="form-select py-xl-3 py-lg-3 py-md-3 py-2" formControlName="willing_to_provide_mentorship">
+                            <option value="" selected>Select Option</option>
+                            <option value="0">Yes</option>
+                            <option value="1">No</option>
+                        </select>
+                        <div class="invalidText fw-bold mt-2 m-0 alert alert-danger text-danger p-1 m-0" *ngIf="(submitted || mentorForm.controls['willing_to_provide_mentorship'].touched) && mentorForm.controls['willing_to_provide_mentorship'].errors?.required">
+                            Willing to provide mentorship is required.
+                        </div>
+                    </div>
+                    <div class="fieldset col-xl-4 col-lg-4 col-md-4 my-xl-3 my-lg-3 my-3">
+                        <label class="form-label fw-bold">Willing to be mentee
+                            <span class="text-danger">*</span>
+                        </label>
+                        <select class="form-select py-xl-3 py-lg-3 py-md-3 py-2" formControlName="willing_to_be_mentee">
+                            <option value=""  selected>Select Option</option>
+                            <option  value="0">Yes</option>
+                            <option  value="1">No</option>
+                        </select>
+                        <div class="invalidText fw-bold mt-2 m-0 alert alert-danger text-danger p-1 m-0" *ngIf="(submitted || mentorForm.controls['willing_to_be_mentee'].touched) && mentorForm.controls['willing_to_be_mentee'].errors?.required">
+                            Willing to be Mentee is required.
+                        </div>
+                    </div>
+                    <div class="fieldset col-xl-4 col-lg-4 col-md-4 my-xl-3 my-lg-3 my-3">
+                        <label class="form-label fw-bold">Add skills <span class="text-danger">*</span></label>
+                        <select class="form-select py-xl-3 py-lg-3 py-md-3 py-2" formControlName="skill_id">
+                            <option value="" selected>Select Skill</option>
+                            <option *ngFor="let item of commonData?.Skill; let i=index;" [value]="item?.id">{{ item?.skill }}</option>
+                        </select>
+                        <div class="invalidText fw-bold mt-2 m-0 alert alert-danger text-danger p-1 m-0" *ngIf="(submitted || mentorForm.controls['skill_id'].touched) && mentorForm.controls['skill_id'].errors?.required">
+                            Please add skills.
+                        </div>
+                    </div>
+                    <div class="fieldset col-xl-3 col-lg-3 col-md-3 my-xl-3 my-lg-3 my-3">
+                        <label class="form-label fw-bold">Primary function area </label>
+                        <select class="form-select py-xl-3 py-lg-3 py-md-3 py-2" formControlName="primary_function_area_id">
+                            <option value="" selected>Select primary area</option>
+                            <option *ngFor="let item of commonData?.Primary_Function; let i=index;" [value]="item?.id">{{ item?.primary_function_area }}</option>
+                        </select>
+                    </div>
+                    <div class="fieldset col-xl-3 col-lg-3 col-md-3 my-xl-3 my-lg-3 my-3">
+                        <label class="form-label fw-bold">Secondary function area </label>
+                        <select class="form-select py-xl-3 py-lg-3 py-md-3 py-2" formControlName="secondary_function_area_id">
+                            <option value="" selected>Select secondary area</option>
+                            <option *ngFor="let item of commonData?.Secondary_Function; let i=index;" [value]="item?.id">{{ item?.secondary_function_area }}</option>
+                        </select>
+                    </div>
+                    <div class="fieldset col-xl-3 col-lg-3 col-md-3 my-xl-3 my-lg-3 my-3">
+                        <label class="form-label fw-bold">Primary industry focus </label>
+                        <select class="form-select py-xl-3 py-lg-3 py-md-3 py-2" formControlName="primary_industry_focus_id">
+                            <option value=" " selected>Select primary industry focus</option>
+                            <option *ngFor="let item of commonData?.Primary_Industry; let i=index;" [value]="item?.id">{{ item?.primary_industry_focus }}</option>
+                        </select>
+                    </div>
+                    <div class="fieldset col-xl-3 col-lg-3 col-md-3 my-xl-3 my-lg-3 my-3">
+                        <label class="form-label fw-bold">Secondary industry focus </label>
+                        <select class="form-select py-xl-3 py-lg-3 py-md-3 py-2" formControlName="secondary_industry_focus_id">
+                            <option value="" selected>Select secondary industry focus</option>
+                            <option *ngFor="let item of commonData?.Secondary_Industry; let i=index;" [value]="item?.id">{{ item?.secondary_industry_focus }}</option>
+                        </select>
+                    </div>
+
+                </div>
+
+                <!-- <div class="row">
+                    <div class="col-lg-4 my-xl-3 my-lg-3 my-2">
+                        <label class="form-label fw-bold">Willing to provide mentorship
+                            <span class="text-danger">*</span>
+                        </label>
+                        <select class="form-select" formControlName="willing_to_provide_mentorship">
+                            <option value="" selected>Select Option</option>
+                            <option value="0">Yes</option>
+                            <option value="1">No</option>
+                        </select>
+                        <div class="invalidText fw-bold mt-2 m-0 alert alert-danger text-danger p-1 m-0" *ngIf="(submitted || mentorForm.controls['willing_to_provide_mentorship'].touched) && mentorForm.controls['willing_to_provide_mentorship'].errors?.required">
+                            Willing to provide mentorship is required.
+                        </div>
+                    </div>
+                    <div class="col-lg-4 my-xl-3 my-lg-3 my-2">
+                        <label class="form-label fw-bold">Willing to be mentee
+                            <span class="text-danger">*</span>
+                        </label>
+                        <select class="form-select" formControlName="willing_to_be_mentee">
+                            <option value=""  selected>Select Option</option>
+                            <option  value="0">Yes</option>
+                            <option  value="1">No</option>
+                        </select>
+                        <div class="invalidText fw-bold mt-2 m-0 alert alert-danger text-danger p-1 m-0" *ngIf="(submitted || mentorForm.controls['willing_to_be_mentee'].touched) && mentorForm.controls['willing_to_be_mentee'].errors?.required">
+                            Willing to be Mentee is required.
+                        </div>
+                    </div>
+                    <div class="col-lg-4 my-xl-3 my-lg-3 my-2">
+                        <label class="form-label fw-bold">Add skills <span class="text-danger">*</span></label>
+                        <select class="form-select" formControlName="skill_id">
+                            <option value="" selected>Select Skill</option>
+                            <option *ngFor="let item of commonData?.Skill; let i=index;" [value]="item?.id">{{ item?.skill }}</option>
+                        </select>
+                        <div class="invalidText fw-bold mt-2 m-0 alert alert-danger text-danger p-1 m-0" *ngIf="(submitted || mentorForm.controls['skill_id'].touched) && mentorForm.controls['skill_id'].errors?.required">
+                            Please add skills.
+                        </div>
+                    </div>
+                </div> -->
+
+                <!-- <div class="row">
+                    <div class="col-lg-3 col-md-4 my-xl-3 my-lg-3 my-2">
+                        <label class="form-label fw-bold">Primary function area </label>
+                        <select class="form-select" formControlName="primary_function_area_id">
+                            <option value="" selected>Select primary area</option>
+                            <option *ngFor="let item of commonData?.Primary_Function; let i=index;" [value]="item?.id">{{ item?.primary_function_area }}</option>
+                        </select>
+                    </div>
+                    <div class="col-lg-3 col-md-4 my-xl-3 my-lg-3 my-2">
+                        <label class="form-label fw-bold">Secondary function area </label>
+                        <select class="form-select" formControlName="secondary_function_area_id">
+                            <option value="" selected>Select secondary area</option>
+                            <option *ngFor="let item of commonData?.Secondary_Function; let i=index;" [value]="item?.id">{{ item?.secondary_function_area }}</option>
+                        </select>
+                    </div>
+                    <div class="col-lg-3 col-md-4 my-xl-3 my-lg-3 my-2">
+                        <label class="form-label fw-bold">Primary industry focus </label>
+                        <select class="form-select" formControlName="primary_industry_focus_id">
+                            <option value=" " selected>Select primary industry focus</option>
+                            <option *ngFor="let item of commonData?.Primary_Industry; let i=index;" [value]="item?.id">{{ item?.primary_industry_focus }}</option>
+                        </select>
+                    </div>
+                    <div class="col-lg-3 col-md-4 my-xl-3 my-lg-3 my-2">
+                        <label class="form-label fw-bold">Secondary industry focus </label>
+                        <select class="form-select" formControlName="secondary_industry_focus_id">
+                            <option value="" selected>Select secondary industry focus</option>
+                            <option *ngFor="let item of commonData?.Secondary_Industry; let i=index;" [value]="item?.id">{{ item?.secondary_industry_focus }}</option>
+                        </select>
+                    </div>
+                </div> -->
+
+                <!-- <div class="row">
+                    <div class="col-lg-4 col-md-4 my-xl-3 my-lg-3 my-2">
+                        <label class="form-label fw-bold">Other function area </label>
+                        <input type="text" class="form-control" formControlName="other_function_area" placeholder="Enter Other Function area">
+                    </div>
+                    <div class="col-lg-4 col-md-4 my-xl-3 my-lg-3 my-2">
+                        <label class="form-label fw-bold">Primary industry focus </label>
+                        <select class="form-select" formControlName="primary_industry_focus_id">
+                            <option value=" " selected>Select primary industry focus</option>
+                            <option *ngFor="let item of commonData?.Primary_Industry; let i=index;" [value]="item?.id">{{ item?.primary_industry_focus }}</option>
+                        </select>
+                    </div>
+                </div> -->
+
+                <!-- <div class="row">
+                    <div class="col-lg-4 col-md-4 my-xl-3 my-lg-3 my-2">
+                        <label class="form-label fw-bold">Secondary industry focus </label>
+                        <select class="form-select" formControlName="secondary_industry_focus_id">
+                            <option value="" selected>Select secondary industry focus</option>
+                            <option *ngFor="let item of commonData?.Secondary_Industry; let i=index;" [value]="item?.id">{{ item?.secondary_industry_focus }}</option>
+                        </select>
+                    </div>
+                    <div class="col-lg-4 col-md-4 my-xl-3 my-lg-3 my-2">
+                        <label class="form-label fw-bold">Other industry focus </label>
+                        <input type="text" class="form-control" formControlName="other_industry_focus" placeholder="Enter Other Industry focus">
+                    </div>
+                </div> -->
+                <div class="row">
+                    <div class="col-lg-4 col-md-4 my-xl-3 my-lg-3 my-2">
+                        <ul class="list-group">
+                            <label class="form-label fw-bold">
+                                Mentee
+                            </label>
+                            <ng-container *ngIf="mentee.length > 0">
+                                <div class="userInfo">
+                                    <li *ngFor="let item of mentee; index as i;" class="list-group-item text-start mt-3 shadow-sm px-2 py-1">
+                                        <a (click)="viewUser(item)" style="cursor: pointer;">
+                                            <div class="row">
+                                                <div class="col-2">
+                                                    <img class="img-thumbnail rounded-circle me-2" style="width: 46px; height: 46px; object-fit: cover;" [src]="item?.profile_pic ? (imgPath + item?.profile_pic) : 'https://www.bootdey.com/img/Content/User_for_snippets.png'" alt="Pic">
+                                                </div>
+                                                <div class="col-10">
+                                                    <p class="m-0">{{item?.first_name}} {{item?.last_name}}</p>
+                                                    <p class="m-0">{{item?.email}}</p>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                </div>
+                            </ng-container>
+                            <ng-container *ngIf="mentee.length == 0">
+                                <p class="p-3 mt-1">No Mentee Found</p>
+                            </ng-container>
+                        </ul>
+                    </div>
+                    <div class="col-lg-4 col-md-4 my-xl-3 my-lg-3 my-2">
+                        <ul class="list-group">
+                            <label class="form-label fw-bold">
+                                Mentor
+                            </label>
+                            <ng-container *ngIf="mentor.length > 0">
+                                <div class="userInfo">
+                                    <li *ngFor="let item of mentor; index as i;" class="list-group-item text-start mt-3 shadow-sm px-2 py-1">
+                                        <a (click)="viewUser(item)" style="cursor: pointer;">
+                                            <div class="row">
+                                                <div class="col-2">
+                                                    <img class="img-thumbnail rounded-circle me-2" style="width: 46px; height: 46px; object-fit: cover;" [src]="item?.profile_pic ? (imgPath + item?.profile_pic) : 'https://www.bootdey.com/img/Content/User_for_snippets.png'" alt="Pic">
+                                                </div>
+                                                <div class="col-10">
+                                                    <p class="m-0">{{item?.first_name}} {{item?.last_name}}</p>
+                                                    <p class="m-0">{{item?.email}}</p>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                </div>
+                            </ng-container>
+                            <ng-container *ngIf="mentor.length == 0">
+                                <p class="p-3 mt-1">No Mentor Found</p>
+                            </ng-container>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- <div class="row justify-content-center">
+                    <div class="col-lg-3 my-xl-3 my-lg-3 my-2 text-center">
+                        <button type="button" (click)="edit()" [disabled]="!mentorForm.valid" class="btn btn-success">Update</button>
+                    </div>
+                </div> -->
+                <div class="my-3" mat-dialog-actions align="center" *ngIf="isFormEditable">
+                    <button mat-raised-button color="primary" type="submit">Update</button>
+                </div>
+            </form>
+        </ng-container>
+    </div>
+</div>

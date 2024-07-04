@@ -1,0 +1,348 @@
+<!--breadcrumb-->
+<div class="page-breadcrumb d-none d-sm-flex align-items-center justify-content-between  mb-4">
+    <div style="display:-webkit-inline-box">
+        <div class="breadcrumb-title pe-3"><a routerLink="/"><i class="bx bx-home-alt"></i></a></div>
+        <div class="ps-3">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb mb-0 p-0">
+                    <li class="breadcrumb-item"><a routerLink="/community/clubs">Community</a>
+                    </li>
+                    <li class="breadcrumb-item active" aria-current="page">Business Ventures</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+
+    <div class="e-btn-group">
+        <span class="displayItems" matTooltip="List View" (click)="changeView(1)"> <i class="bx bx-list-ul fa-2x me-2 p-2" [ngClass]="(display === 1) ? 'listBg' : 'gridBg'"></i></span>
+        <span class="displayItems" matTooltip="Grid View" (click)="changeView(2)"> <i class="bx bx-grid-alt fa-2x p-2" [ngClass]="(display === 2) ? 'listBg' : 'gridBg'"></i></span>
+    </div>
+</div>
+<!--end breadcrumb-->
+
+<div class="row justify-content-end m-0">
+    <div class="col-3 text-end">  
+      <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+        <mat-icon matTooltip="Click to add filter">filter_alt</mat-icon>
+      </button>
+  
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item>
+          <mat-checkbox color="primary" [(ngModel)]="ownerChecked" ngInit="ownerChecked=true" labelPosition="after" >Owner Name</mat-checkbox>
+        </button>
+        <button mat-menu-item>
+          <mat-checkbox color="primary" [(ngModel)]="contactChecked" ngInit="contactChecked=true" labelPosition="after">Contact Person</mat-checkbox>
+        </button>
+        <button mat-menu-item>
+            <mat-checkbox color="primary" [(ngModel)]="emailChecked" ngInit="emailChecked=true" labelPosition="after">Email</mat-checkbox>
+        </button>
+        <button mat-menu-item>
+            <mat-checkbox color="primary" [(ngModel)]="companyChecked" ngInit="companyChecked=true" labelPosition="after">Company</mat-checkbox>
+        </button>
+        <button mat-menu-item>
+            <mat-checkbox color="primary" [(ngModel)]="customerChecked" ngInit="customerChecked=true" labelPosition="after">Customer</mat-checkbox>
+        </button>
+        <button mat-menu-item>
+            <mat-checkbox color="primary" [(ngModel)]="batchChecked" ngInit="batchChecked=true" labelPosition="after">Batch</mat-checkbox>
+        </button>
+        <button mat-menu-item>
+            <mat-checkbox color="primary" [(ngModel)]="countryChecked" ngInit="countryChecked=true" labelPosition="after">Country</mat-checkbox>
+        </button>
+        <button mat-menu-item>
+            <mat-checkbox color="primary" [(ngModel)]="cityChecked" ngInit="cityChecked=true" labelPosition="after">City</mat-checkbox>
+        </button>
+        <button mat-menu-item>
+            <mat-checkbox color="primary" [(ngModel)]="industryChecked" ngInit="industryChecked=true" labelPosition="after">Industry</mat-checkbox>
+        </button>
+        <button mat-menu-item>
+            <mat-checkbox color="primary" [(ngModel)]="facebookChecked" ngInit="facebookChecked=true" labelPosition="after">Facebook</mat-checkbox>
+        </button>
+        <button mat-menu-item>
+            <mat-checkbox color="primary" [(ngModel)]="linkedinChecked" ngInit="linkedinChecked=true" labelPosition="after">Linkedin</mat-checkbox>
+        </button>
+        <button mat-menu-item>
+          <mat-checkbox color="primary" [(ngModel)]="statusChecked" ngInit="statusChecked=true" labelPosition="after">Status</mat-checkbox>
+        </button>
+      </mat-menu>
+    </div>
+</div>
+  
+<div class="">
+    <div class="row my-3 p-3 bg-white alumni-body card border-top border-0 border-4 border-primary m-0">
+        <div class="col-12 p-3 border" >
+        <div class="search-filter mt-3">
+            <form class="" [formGroup]="searchForm">
+            <div class="row g-3">
+
+                <div class="fieldset col-xl-3 col-lg-3 col-md-4 col-sm-4 col-6 my-3" *ngIf="ownerChecked">
+                    <label class=" form-label fw-bold">Search By Owner Name </label>
+                    <input type="text" class="form-control py-xl-3 py-lg-3 py-md-3 py-2" formControlName="owner" placeholder="Search by owner name">
+                </div>
+                <div class="fieldset col-xl-3 col-lg-3 col-md-4 col-sm-4 col-6 my-3" *ngIf="contactChecked">
+                    <label class=" form-label fw-bold">Search By Contact Person </label>
+                    <input type="text" class="form-control py-xl-3 py-lg-3 py-md-3 py-2" formControlName="contact" placeholder="Search by contact person">
+                </div>
+                <div class="fieldset col-xl-3 col-lg-3 col-md-4 col-sm-4 col-6 my-3" *ngIf="emailChecked">
+                    <label class=" form-label fw-bold">Search By Email</label>
+                    <input type="text" class="form-control py-xl-3 py-lg-3 py-md-3 py-2" formControlName="email" placeholder="Search by email">
+                </div>
+                <div class="fieldset col-xl-3 col-lg-3 col-md-4 col-sm-4 col-6 my-3" *ngIf="companyChecked">
+                    <label class=" form-label fw-bold">Search By Comapny Name</label>
+                    <input type="text" class="form-control py-xl-3 py-lg-3 py-md-3 py-2" formControlName="company" placeholder="Search by company name">
+                </div>
+                <div class="fieldset col-xl-3 col-lg-3 col-md-4 col-sm-4 col-6 my-3" *ngIf="customerChecked">
+                    <label class=" form-label fw-bold">Search By Customer</label>
+                    <input type="text" class="form-control py-xl-3 py-lg-3 py-md-3 py-2" formControlName="customer" placeholder="Search by customer">
+                </div>
+                <!-- <div class="fieldset col-xl-3 col-lg-3 col-md-4 col-sm-4 col-6 my-3" *ngIf="customerChecked">
+                    <label class=" form-label fw-bold">Search By Batch</label>
+                    <input type="text" class="form-control py-xl-3 py-lg-3 py-md-3 py-2" formControlName="customer" placeholder="Search by customer">
+                </div> -->
+                <div class="fieldset col-xl-3 col-lg-3 col-md-4 col-sm-4 col-6 my-3" *ngIf="batchChecked">
+                    <label class=" form-label fw-bold">Search By Batch </label>
+                    <select class="form-select py-xl-3 py-lg-3 py-md-3 py-2" formControlName="batch">
+                        <option value="" selected>Choose batch</option>
+                        <option [value]="item.batch" *ngFor="let item of getBatch">
+                        {{ item?.batch }}
+                        </option>
+                    </select>
+                </div>
+                <div class="fieldset col-xl-3 col-lg-3 col-md-4 col-sm-4 col-6 my-3" *ngIf="countryChecked">
+                    <label class=" form-label fw-bold">Search By Country </label>
+                    <select class="form-select py-xl-3 py-lg-3 py-md-3 py-2" formControlName="country">
+                        <option value="" selected>Choose country</option>
+                        <option [value]="item.country" *ngFor="let item of countries">
+                        {{ item?.country }}
+                        </option>
+                    </select>
+                </div>
+                <div class="fieldset col-xl-3 col-lg-3 col-md-4 col-sm-4 col-6 my-3" *ngIf="cityChecked">
+                    <label class=" form-label fw-bold">Search By City</label>
+                    <input type="text" class="form-control py-xl-3 py-lg-3 py-md-3 py-2" formControlName="city" placeholder="Search by city">
+                </div>
+                <div class="fieldset col-xl-3 col-lg-3 col-md-4 col-sm-4 col-6 my-3" *ngIf="industryChecked">
+                    <label class=" form-label fw-bold">Search By Industry</label>
+                    <input type="text" class="form-control py-xl-3 py-lg-3 py-md-3 py-2" formControlName="industry" placeholder="Search by industry">
+                </div>
+                <div class="fieldset col-xl-3 col-lg-3 col-md-4 col-sm-4 col-6 my-3" *ngIf="facebookChecked">
+                    <label class=" form-label fw-bold">Search By Facebook Id</label>
+                    <input type="text" class="form-control py-xl-3 py-lg-3 py-md-3 py-2" formControlName="linkedin" placeholder="Search by facebook id">
+                </div>
+                <div class="fieldset col-xl-3 col-lg-3 col-md-4 col-sm-4 col-6 my-3" *ngIf="linkedinChecked">
+                    <label class=" form-label fw-bold">Search By Linkedin</label>
+                    <input type="text" class="form-control py-xl-3 py-lg-3 py-md-3 py-2" formControlName="linkedin" placeholder="Search by linkedin">
+                </div>
+                
+                <div class="fieldset col-xl-3 col-lg-3 col-md-4 col-sm-4 col-6 my-3" *ngIf="statusChecked">
+                    <label class=" form-label fw-bold">Search By Status</label>
+                    <select class="form-select py-xl-3 py-lg-3 py-md-3 py-2" formControlName="status">
+                        <option value="" selected>All</option>
+                        <option value="active">Active</option>
+                        <option value="inActive">Inactive</option>
+                    </select>
+                </div>
+            </div>
+            <div class="my-2" mat-dialog-actions align="start">
+                <button mat-raised-button color="primary" (click)="searchData()">Search</button>
+                <button class="ms-2" mat-raised-button color="warn" *ngIf="formReset" (click)="resetForm()">Reset</button>
+            </div>
+            </form>
+        </div>
+        </div>  
+    </div>
+</div>
+
+    <!-- <div class="">
+        <div class="row my-3 p-3 bg-white alumni-body card border-top border-0 border-4 border-primary m-0">
+            <div class="col-12 p-3 border" >
+                <div class="search-filter mt-3">
+                    <form class="" [formGroup]="searchForm">
+                        <div class="row g-3">
+                            <div class="form-group col-xl-3 col-lg-3 col-md-4 col-sm-4 col-6 my-2">
+                            <label class="form-label" for="inputEmail4">Search By Name:</label>
+                            <input type="name" class="form-control" formControlName="name" id="inputName" placeholder="Search by name" />
+                            </div>
+                            <div class="form-group col-xl-3 col-lg-3 col-md-4 col-sm-4 col-6 my-2">
+                            <label class="form-label" for="inputAddress2">Search By Contact No.:</label>
+                            <input type="text" appNumbersOnly class="form-control" formControlName="contact" id="inputMobileNumber"
+                                placeholder="Search by contact number" />
+                            </div>
+                            <div class="form-group col-xl-3 col-lg-3 col-md-4 col-sm-4 col-6 my-2">
+                            <label class="form-label" for="inputemail">Search By Email:</label>
+                            <input type="email" class="form-control" formControlName="email" id="inputEmail"
+                                placeholder="Search by email" />
+                            </div>
+                            <div class="form-group col-xl-3 col-lg-3 col-md-4 col-sm-4 col-6 my-2">
+                            <label class="form-label" for="inputAddress">Search By Company Name:</label>
+                            <input type="text" class="form-control" id="inputCompanyName" formControlName="company"
+                                placeholder="Search by company name" />
+                            </div>
+                            <div class="form-group col-xl-3 col-lg-3 col-md-4 col-sm-4 col-6 my-2">
+                            <label class="form-label" for="inputAddress">Search By Founder:</label>
+                            <input type="text" class="form-control" id="inputCompanyName" formControlName="owner"
+                                placeholder="Search by founder" />
+                            </div>
+                            <div class="form-group col-xl-3 col-lg-3 col-md-4 col-sm-4 col-6 my-2">
+                            <label class="form-label" for="inputAddress2">Search By Status:</label>
+                            <select class="form-select form-control" placeholder="Select status name" formControlName="status">
+                                <option value="" selected>All</option>
+                                <option value="active">Active</option>
+                                <option value="inActive">Inactive</option>
+                            </select>
+                            </div>
+                        </div>
+                        <div class="my-3" mat-dialog-actions align="center">
+                            <button class="me-2" mat-raised-button color="warn" *ngIf="formReset" (click)="resetForm()">Reset</button>
+                            <button mat-raised-button color="primary" (click)="searchData()">Search</button>
+                        </div>
+                    </form>
+                </div>
+            </div>    
+        </div>
+    </div> -->
+
+    <ng-template #list_content>
+        <!-- <div class="ms-auto">
+            <div class="d-flex justify-content-end">
+                <button mat-fab color="primary" matTooltip="Add Club" (click)="add($event, 'create-entrepreneur')" class="m-2" aria-label="Example icon button with a delete icon">
+                <mat-icon>add</mat-icon>
+              </button>
+            </div>
+        </div>
+         -->
+        <div class="row row-cols-1 row-cols-lg-2 row-cols-xl-4 py-2">
+          <div class="col" *ngFor="let item of businessData">
+              <div class="icons_wrapper">
+                  <ng-container>
+                      <div class="drag_container" id="{{item?.id}}">
+                          <div class="card gridCard radius-15">
+                              <div class="card-body text-center">
+                                  <div class="radius-15 team-info">
+                                      <img src="{{item?.company_logo ? imgPath + item?.company_logo : './assets/images/dummyImg.jpg'}}" width="110" height="110" class="shadow" alt="">
+                                      <h6 class="mb-0 mt-5 mb-1"><b>{{item?.company}}</b></h6>
+                                      <p class="mb-1 designation">{{item?.contact}}</p>
+                                      <p class="mb-1 designation">{{item?.email}}</p>
+                                      <a href="{{item?.website}}" target="_blank" class="mb-2 designation">{{item?.website}}</a>
+                                  </div>
+                              </div>
+      
+                              <div class="list-inline contacts-social mb-3 text-center"> 
+                                  <a (click)="edit(item, 'Edit-KeyContact')" class="list-inline-item bg-facebook text-white border-0"><i class="bx bxs-edit"></i></a>
+                                  <a (click)="view(item)" class="list-inline-item bg-twitter text-white border-0"><i class="bx bxs-bullseye"></i></a>
+                                  <a (click)="delete(item, 'Business Ventures')" class="list-inline-item bg-google text-white border-0"><i class="bx bxs-trash"></i></a>
+                              </div>
+      
+                          </div>
+                      </div>
+                  </ng-container>
+              </div>
+          </div>
+        </div>
+    </ng-template>
+    
+    <div class=" mb-4" *ngIf="display === 1;else list_content">
+        <div class="ms-auto">
+            <div class="d-flex justify-content-end">
+                <button mat-fab color="primary" matTooltip="Add Club" (click)="add($event, 'create-entrepreneur')" class="m-2" aria-label="Example icon button with a delete icon">
+                <mat-icon>add</mat-icon>
+              </button>
+            </div>
+        </div>
+        <div class="table-responsive">
+            <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z4 w-100">
+                <ng-container [matColumnDef]="'sr.no'">
+                    <th class="text-capitalize fs-6 text-center" mat-header-cell *matHeaderCellDef>Sr. no.</th>
+                    <td class="text-center ps-4" mat-cell *matCellDef="let element;index as i;">
+                        <p>{{i+1}}</p>
+                    </td>
+                </ng-container>
+
+                <ng-container [matColumnDef]="'company_logo'">
+                    <th class="text-capitalize fs-6 text-center" mat-header-cell *matHeaderCellDef>Logo</th>
+                    <td class="text-center ps-4" mat-cell *matCellDef="let element">
+                        <img class="tableImg" [src]="element?.company_logo ? imgPath + element?.company_logo : './assets/images/dummyImg.jpg'" alt="img"/>
+                    </td>
+                </ng-container>
+                
+                <ng-container *ngFor="let column of displayedColumns" [matColumnDef]="column">
+                    <th mat-header-cell *matHeaderCellDef>
+                        <div style="display: flex; align-items: center;">
+                            <span mat-sort-header class="text-capitalize fs-6">{{column | replaceUnderscore}}</span>
+                            <!-- <button mat-icon-button>
+                                <mat-icon mat-icon-button color="primary" [matMenuTriggerFor]="menu"
+                                    [matMenuTriggerData]="{columnName: column}">filter_list </mat-icon>
+                            </button> -->
+                        </div>
+                    </th>
+                    <td mat-cell *matCellDef="let element"> {{element[column]}} </td>
+                </ng-container>
+
+                <ng-container [matColumnDef]="'status'">
+                    <th class="text-capitalize fs-6 text-center" mat-header-cell *matHeaderCellDef> Status </th>
+                    <td class="text-center ps-4" mat-cell *matCellDef="let element">
+                        <select class="form-select m-auto" aria-label="Default select" [(ngModel)]="element.status" (change)="onStatusChange($event, element)" [ngClass]="{ 'isActive': element.status === 'active' , 'isInactive': element.status === 'inActive' }">
+                            <option [value]="item.status" *ngFor="let item of status; index as i" class="text-capitalize">{{item?.status == "active" ? 'Active' : 'Inactive'}}</option>
+                        </select>
+                    </td>
+                </ng-container>
+
+                <ng-container [matColumnDef]="'actions'">
+                    <th class="text-capitalize fs-6 text-center" mat-header-cell *matHeaderCellDef> Actions </th>
+                    <td class="text-center" mat-cell *matCellDef="let element">
+                        <button mat-icon-button (click)="view(element)">
+                            <mat-icon mat-icon-button matTooltip="View Business Ventures" color="accent">visibility</mat-icon>
+                        </button>
+                        <button mat-icon-button (click)="edit(element, 'update-entrepreneur')">
+                            <mat-icon mat-icon-button matTooltip="Edit Business Ventures" color='primary'>edit</mat-icon>
+                        </button>
+                        <button mat-icon-button (click)="delete(element, 'Business Ventures')">
+                            <mat-icon mat-icon-button matTooltip="Delete Business Ventures" color="warn">delete</mat-icon>
+                        </button>
+                    </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+                <tr mat-row *matRowDef="let row; columns: columnsToDisplay;"></tr>
+            </table>
+        </div>
+        <mat-paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 50]" showFirstLastButtons></mat-paginator>
+    </div>
+
+    <!-- menu for column filtering-->
+    <mat-menu #menu="matMenu" class="matMenu">
+        <ng-template matMenuContent let-dataColumnName="columnName">
+            <div class="flex-column p-2" (click)="$event.stopPropagation();">
+                <div class="mb-1">
+
+                    <mat-form-field class="fullWidth w-100" appearance="outline">
+                        <mat-label>Choose a filter *</mat-label>
+                        <mat-select #selectedOperationFilter [value]="'contains'">
+                            <mat-option value="contains" select>Contains</mat-option>
+                            <mat-option value="equals">Equals</mat-option>
+                            <mat-option value="greaterThan">Greater than</mat-option>
+                            <mat-option value="lessThan">Less than</mat-option>
+                            <mat-option value="endWith">End with</mat-option>
+                            <mat-option value="startWith">Start With</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                </div>
+                <div class="mb-1 fullWidth">
+                    <mat-form-field class="fullWidth" appearance="outline">
+                        <mat-label>write a value*</mat-label>
+                        <input matInput #searchValue type="text">
+                    </mat-form-field>
+                </div>
+                <div class="fullWidth d-flex flex-row mb-1  justify-content-around">
+                    <button [disabled]="!searchValue.value" mat-raised-button color="primary" class="flex-row flex-align-center btn-filter-action" (click)="applyFilter(dataColumnName, selectedOperationFilter.value,  searchValue.value)">
+            <mat-icon>check</mat-icon>
+            <label>filter</label>
+          </button>
+                    <button mat-raised-button class="flex-row flex-align-center btn-filter-action" color="warn" (click)="clearFilter(dataColumnName)">
+            <mat-icon>clear</mat-icon>
+            <label>reset</label>
+          </button>
+                </div>
+            </div>
+        </ng-template>
+    </mat-menu>

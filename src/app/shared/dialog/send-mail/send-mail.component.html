@@ -1,0 +1,43 @@
+<h5 mat-dialog-title class="mb-3 mt-0 fw-bold text-center">Send mail</h5>
+<div mat-dialog-content>
+    <form [formGroup]="form">
+        <div>
+            <mat-form-field class="fullWidth w-100" appearance="fill">
+                <mat-label>To </mat-label>
+                <input matInput type="text" name="to" value="{{data?.user?.first_name}} {{data?.user?.last_name}}" readonly/>
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field class="fullWidth w-100" appearance="fill">
+                <mat-label>Subject </mat-label>
+                <input matInput type="text" name="subject" formControlName="subject"/>
+                <mat-error *ngIf="form.controls['subject']?.errors?.required">This field is required</mat-error>
+            </mat-form-field>
+        </div>
+        <div class="">
+            <label for="inputAddress4" class="col-sm-3 col-form-label">Description :</label>
+            <editor required formControlName="description"
+            [init]="{
+                height: 120,
+                menubar: false,
+                plugins: [
+                'advlist autolink lists link image charmap print preview anchor',
+                'searchreplace visualblocks code fullscreen',
+                'insertdatetime media table paste code help wordcount'
+                ],
+                toolbar:
+                'undo redo | formatselect | bold italic backcolor | \
+                alignleft aligncenter alignright alignjustify | \
+                bullist numlist outdent indent | removeformat | help'
+            }"
+            ></editor>
+            <ng-container *ngIf="form.controls['description']?.touched">
+                <mat-error *ngIf="form.controls['description']?.errors?.required">This field is required</mat-error>
+            </ng-container>
+        </div>
+    </form>
+</div>
+<div class="mt-2" mat-dialog-actions align="end">
+    <button mat-raised-button color="warn" mat-dialog-close>Cancel</button>
+    <button mat-raised-button color="primary" [mat-dialog-close]="true" [disabled]="form.invalid" cdkFocusInitial (click)="send()">Send</button>
+</div>

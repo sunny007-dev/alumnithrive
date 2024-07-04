@@ -1,0 +1,61 @@
+<h5 mat-dialog-title class="mb-3 mt-0 fw-bold text-center">{{data?.action == "create-team" ? 'Add' :  'Update'}} Leadership</h5>
+<div mat-dialog-content>
+    <form [formGroup]="leadershipForm">
+        <div>
+            <mat-form-field class="fullWidth w-100" appearance="fill">
+                <mat-label>Name </mat-label>
+                <input matInput type="text" name="name" formControlName="name">
+                <mat-error *ngIf="(submitted || leadershipForm.controls['name'].touched) && leadershipForm.controls['name']?.errors?.required">This field is required</mat-error>
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field class="fullWidth w-100" appearance="fill">
+                <mat-label>Order </mat-label>
+                <input matInput type="text" name="order" formControlName="order">
+                <mat-error *ngIf="leadershipForm.controls['order']?.errors?.required">This field is required</mat-error>
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field class="fullWidth w-100" appearance="fill">
+                <mat-label>Institute Name </mat-label>
+                <input matInput type="text" name="institute_name" formControlName="institute_name">
+                <mat-error *ngIf="leadershipForm.controls['institute_name']?.errors?.required">This field is required</mat-error>
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field class="fullWidth w-100" appearance="fill">
+                <mat-label>Designation </mat-label>
+                <input matInput type="text" name="designation" formControlName="designation">
+                <mat-error *ngIf="leadershipForm.controls['designation']?.errors?.required">This field is required</mat-error>
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field class="fullWidth w-100" appearance="fill">
+              <mat-label>Status </mat-label>
+              <mat-select name="status" formControlName="status">
+                <mat-option value="active">Active</mat-option>
+                <mat-option value="inActive">Inactive</mat-option>
+              </mat-select>
+              <mat-error *ngIf="leadershipForm.controls['status']?.errors?.required">This field is required</mat-error>
+            </mat-form-field>
+        </div>
+        <div class="form-group row mt-2">
+            <div class="col-sm-8 pl-lg-0 pl-md-0 pl-xl-0">
+                <input type="file" class="form-control mb-2" formControlName="image" id="formGroupLink" (change)="onUploadImage($event)" accept="image/*" placeholder="Upload Image" />
+                <mat-error *ngIf="leadershipForm.controls['image']?.errors?.required">This field is required</mat-error>
+            </div>
+            <div class="col-sm-4">
+                <ng-container *ngIf="image !== undefined">
+                    <img [src]="image" class="img-fluid h-100 my-2" alt="picture">
+                </ng-container>
+                <ng-container *ngIf="data.action === 'update-team' && data?.data?.image !== undefined">
+                    <img [src]="imgPath + data.data.image" class="img-fluid h-100" alt="logo">
+                </ng-container>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="mt-5" mat-dialog-actions align="end">
+    <button mat-raised-button color="warn" mat-dialog-close>Cancel</button>
+    <button mat-raised-button color="primary" [mat-dialog-close]="true" cdkFocusInitial (click)="save()">{{data?.action == "create-team" ? 'Submit' :  'Update'}}</button>
+</div>

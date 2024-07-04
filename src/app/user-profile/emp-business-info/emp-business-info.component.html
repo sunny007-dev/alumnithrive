@@ -1,0 +1,106 @@
+<div class="row">
+    <div class="col-lg-12">
+        <app-loader *ngIf="loading"></app-loader>
+        <ng-container *ngIf="!loading">
+            <form [formGroup]="empBuisnessForm" (ngSubmit)="edit()">
+
+                <div class="row">
+
+                    <div class="fieldset col-xl-4 col-lg-4 col-md-4 my-xl-3 my-lg-3 my-3">
+                        <label class=" form-label fw-bold">If employee, professional title </label>
+                        <select class="form-select py-xl-3 py-lg-3 py-md-3 py-2" formControlName="professional_title">
+                            <option value="" selected>Select professional title</option>
+                            <option *ngFor="let item of professionalTitle; let i=index;" [value]="item?.label">{{ item?.label }}</option>
+                        </select>
+                    </div>
+                    <div class="fieldset col-xl-4 col-lg-4 col-md-4 my-xl-3 my-lg-3 my-3">
+                        <label class=" form-label fw-bold">Other professional title </label>
+                        <input type="text" class="form-control py-xl-3 py-lg-3 py-md-3 py-2" formControlName="other_professional_title" placeholder="Enter professional title">
+                    </div>
+                    <div class="fieldset col-xl-4 col-lg-4 col-md-4 my-xl-3 my-lg-3 my-3">
+                        <label class=" form-label fw-bold">Profession category: </label>
+                        <select class="form-select py-xl-3 py-lg-3 py-md-3 py-2" formControlName="professional_category">
+                            <option value="" selected>Select professional category</option>
+                            <option *ngFor="let item of commonData?.Employment_type; let i=index;" [value]="item?.id">{{ item?.employment_type_name }}</option>
+                        </select>
+                    </div>
+                    <div class="fieldset col-xl-4 col-lg-4 col-md-4 my-xl-3 my-lg-3 my-3">
+                        <label class=" form-label fw-bold">If, Business owner, current title </label>
+                        <input type="text" class="form-control py-xl-3 py-lg-3 py-md-3 py-2" formControlName="business_owner" placeholder="Enter business owner title">
+                    </div>
+                    <div class="fieldset col-xl-4 col-lg-4 col-md-4 my-xl-3 my-lg-3 my-3">
+                        <label class=" form-label fw-bold">Current business owned name</label>
+                        <input type="text" class="form-control py-xl-3 py-lg-3 py-md-3 py-2" formControlName="business_name" placeholder="Enter business owned name">
+                    </div>
+                    <div class="fieldset col-xl-4 col-lg-4 col-md-4 my-xl-3 my-lg-3 my-3">
+                        <label class=" form-label fw-bold">Current employer </label>
+                        <input type="text" class="form-control py-xl-3 py-lg-3 py-md-3 py-2" formControlName="current_employer" placeholder="Enter current employer">
+                    </div>
+                    <div class="fieldset col-xl-4 col-lg-4 col-md-4 my-xl-3 my-lg-3 my-3">
+                        <label for="exampleFormControlTextarea1" class=" form-label fw-bold">Current office address </label>
+                        <textarea class="form-control py-xl-3 py-lg-3 py-md-3 py-2" formControlName="current_office_address" id="exampleFormControlTextarea1" rows="2" placeholder="Enter current office address"></textarea>
+                    </div>
+                    
+
+                </div>
+
+                <!-- <div class="row">
+                    <div class="col-lg-6 my-xl-3 my-lg-3 my-2">
+                        <label class=" form-label fw-bold">If employee, professional title </label>
+                        <select class="form-select" formControlName="professional_title">
+                            <option value="" selected>Select professional title</option>
+                            <option *ngFor="let item of professionalTitle; let i=index;" [value]="item?.label">{{ item?.label }}</option>
+                        </select>
+                    </div>
+                    <div class="col-lg-6 my-xl-3 my-lg-3 my-2">
+                        <label class=" form-label fw-bold">Other professional title </label>
+                        <input type="text" class="form-control" formControlName="other_professional_title" placeholder="Enter professional title">
+                    </div>
+                </div> -->
+
+                <!-- <div class="row">
+                    <div class="col-lg-6 my-xl-3 my-lg-3 my-2">
+                        <label class=" form-label fw-bold">Profession category: </label>
+                        <select class="form-select" formControlName="professional_category">
+                            <option value="" selected>Select professional category</option>
+                            <option *ngFor="let item of professionCategory; let i=index;" [value]="item?.label">{{ item?.label }}</option>
+                        </select>
+                    </div>
+                    <div class="col-lg-6 my-xl-3 my-lg-3 my-2">
+                        <label class=" form-label fw-bold">Current employer </label>
+                        <input type="text" class="form-control" formControlName="current_employer" placeholder="Enter current employer">
+                    </div>
+                </div> -->
+
+                <!-- <div class="row">
+                    <div class="col-lg-6 my-xl-3 my-lg-3 my-2">
+                        <label for="exampleFormControlTextarea1" class=" form-label fw-bold">Current office address </label>
+                        <textarea class="form-control" formControlName="current_office_address" id="exampleFormControlTextarea1" rows="2" placeholder="Enter current office address"></textarea>
+                    </div>
+                </div> -->
+
+                <!-- <div class="row">
+                    <div class="col-lg-6 my-xl-3 my-lg-3 my-2">
+                        <label class=" form-label fw-bold">If, Business owner, current title </label>
+                        <input type="text" class="form-control" formControlName="business_owner" placeholder="Enter business owner title">
+                    </div>
+                    <div class="col-lg-6 my-xl-3 my-lg-3 my-2">
+                        <label class=" form-label fw-bold">Current business owned name</label>
+                        <input type="text" class="form-control" formControlName="business_name" placeholder="Enter business owned name">
+                    </div>
+                </div> -->
+
+                <!-- <div class="row justify-content-center">
+                    <div class="col-lg-3 my-xl-3 my-lg-3 my-2 text-center">
+                        <button type="button" (click)="edit()" [disabled]="!empBuisnessForm.valid" class="btn btn-success">Update</button>
+                    </div>
+                </div> -->
+                <div class="my-3" mat-dialog-actions align="center" *ngIf="isFormEditable">
+                    <!-- <button mat-raised-button color="warn" (click)="addQuantity()">Add Items</button> -->
+                    <button mat-raised-button color="primary" type="submit" >Update</button>
+                </div>
+
+            </form>
+         </ng-container>
+    </div>
+</div>

@@ -1,0 +1,214 @@
+            @use "~igniteui-angular/theming" as *;
+            // Uncomment the following lines if you want to add a custom palette:
+            // $primary: #731963 !default;
+            // $secondary: #ce5712 !default;
+            // $app-palette: palette($primary, $secondary);
+            /* autoprefixer grid: on */
+            
+            @include core();
+            @include typography($font-family: $material-typeface, $type-scale: $material-type-scale);
+            @include theme($default-palette);
+            // CSS Reset, comment out if not required or using a different module
+            @import '~minireset.css/minireset';
+            /* You can add global styles to this file, and also import other style files */
+
+            @import "~@ng-select/ng-select/themes/default.theme.css";
+            
+            html,
+            body {
+                height: 100%;
+            }
+            
+            body {
+                margin: 0;
+                font-family: Roboto, sans-serif;
+            }
+            
+            .user-profile.view {
+                input,
+                textarea,
+                select {
+                    pointer-events: none;
+                }
+            }
+            @font-face {
+                font-family: roboto-medium;
+                src: url('./assets/fonts/Roboto/Roboto-Medium.ttf');
+            }
+            @font-face {
+                font-family: roboto;
+                src: url('./assets/fonts/Roboto/Roboto-Regular.ttf');
+            }
+            html,
+            body {
+                height: 100%;
+            }
+            
+            body {
+                margin: 0;
+                font-family: Roboto, "Helvetica Neue", sans-serif;
+            }
+            
+            html,
+            body {
+                height: 100%;
+            }
+            
+            body {
+                margin: 0;
+                font-family: Roboto, "Helvetica Neue", sans-serif;
+            }
+            p{
+                margin: 0px !important;
+            }
+            
+            .isActive {
+                color: #12bc12 !important;
+                font-size: 14px !important;
+                border: 0;
+                font-weight: 900;
+                text-transform: capitalize;
+                width: auto;
+            }
+            
+            .isInactive {
+                color: #f44336 !important;
+                font-size: 14px !important;
+                border: 0;
+                font-weight: 900;
+                text-transform: capitalize;
+                width: auto;
+            }
+            .isRejected {
+                color: #e9cd1a !important;
+                font-size: 14px !important;
+                border: 0;
+                font-weight: 900;
+                text-transform: capitalize;
+                width: auto;
+            }
+            
+            .isActive:focus,
+            .isInactive:focus {
+                box-shadow: none;
+            }
+            .tableImg{
+                width: 68px;
+                height: 68px;
+                // border-radius: 50%;
+                object-fit: cover;
+                margin: 8px 12px 8px 2px;
+                cursor: pointer;
+            }
+            .displayItems {
+                cursor: pointer;
+            }
+            .listBg{
+                background-color: #3D5EE1;
+                color: #fff;
+                border-radius: 6px;
+            }
+            .gridBg {
+                background-color: #E9E9E9;
+                color:#3D5EE1;
+                border-radius: 6px;
+            }
+
+            .table-responsive {
+                display: block;
+                width: 100%;
+                overflow-x: auto;
+                .mat-table {
+                    width: 100%;
+                    max-width: 100%;
+                    margin-bottom: 1rem;
+                    display: table;
+                    border-collapse: collapse;
+                    margin: 0px;
+                }
+                .mat-row,
+                .mat-header-row {
+                    display: table-row;
+                }
+                .mat-cell,
+                .mat-header-cell {
+                    word-wrap: initial;
+                    display: table-cell;
+                    padding: 5px 20px;
+                    line-break: unset;
+                    width: auto;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    vertical-align: middle;
+                }
+              }
+
+
+            .mat-sort-header,
+            .mat-header-cell{
+                font-size: 15px !important;
+            }
+            .mat-tooltip{
+                background-color: #5067e5 !important;
+                font-size: 12px !important;
+            }
+            .mat-table thead {
+                background: #F8F9FA;
+                html,
+                body {
+                    height: 100%;
+                }
+                body {
+                    margin: 0;
+                    font-family: Roboto, "Helvetica Neue", sans-serif;
+                }
+                .user-profile.view {
+                    input,
+                    textarea,
+                    select {
+                        pointer-events: none;
+                    }
+                }
+            }
+            .ng-dropdown-panel .ng-dropdown-panel-items {
+                max-height: 168px !important;
+            }
+
+            th.mat-header-cell, td.mat-cell, td.mat-footer-cell{
+                max-width: 220px !important;
+            }
+
+            .tox .tox-statusbar a{
+                display: none !important;
+            }
+            .cdk-overlay-container{
+                .cdk-global-overlay-wrapper{
+                    .cdk-overlay-pane{
+                        position: relative !important;
+                        .mat-dialog-container{
+                            border-radius: 10px !important;
+                            .mat-dialog-title{
+                                .mat-icon{
+                                    color: #3f51b5 !important;
+                                    background: #fff !important;
+                                    font-size: 20px !important;
+                                    font-weight: 600 !important;
+                                    padding: 20px !important;
+                                    display: flex !important;
+                                    justify-content: center !important;
+                                    align-items: center !important;
+                                    border-radius: 50% !important;
+                                    position: absolute !important;
+                                    right: -15px !important;
+                                    top: -15px !important;
+                                    box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2), 0px 6px 10px 0px rgba(0, 0, 0, 0.14), 0px 1px 18px 0px rgba(0, 0, 0, 0.12) !important;
+                                    &:hover{
+                                        color: #fff !important;
+                                        background: #3f51b5 !important;
+                                    }
+                                }
+                            }    
+                        }
+                    }
+                }
+            }

@@ -1,0 +1,193 @@
+<!--breadcrumb-->
+<div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3 position-relative">
+    <div class="breadcrumb-title pe-3">User Profile</div>
+    <div class="ps-3">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb mb-0 p-0">
+                <li class="breadcrumb-item"><a routerLink="/"><i class="bx bx-home-alt"></i></a>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">{{profileData?.Users?.first_name}} {{profileData?.Users?.middle_name}} {{profileData?.Users?.last_name}} Profile</li>
+            </ol>
+        </nav>
+    </div>
+    <div class="userCount position-absolute end-0">
+        <button mat-raised-button color="primary" matTooltip="Click to Back" (click)="backButton()">Back</button>
+    </div>
+</div>
+<!--end breadcrumb-->
+<div class="main-body user-profile">
+    <div class="row">
+        <div class="col-lg-12 align-middle">
+            <form [formGroup]="profileForm">
+                <div class="card d-flex align-items-center flex-row">
+                    <div class="imgIcon position-relative" style="overflow: hidden;">
+                        <img src="{{(profileData?.Users?.profile_pic)? imgPath + profileData?.Users?.profile_pic :  'assets/images/avatars/user-avatar.webp'}}" class="avatars rounded-circle  card-img-top mx-auto ms-3 " alt="...">
+                        <input name="img" class="upload-profile-pic" type="file"  *ngIf="isFormEditable  ? 'disabled' : ''"  formControlName="profile_pic" id="formGroupLink" (change)="onUploadImage($event)" accept="image/*" />
+                        <i class="bx bx-pencil rounded-circle bg-primary p-1 text-white position-absolute bottom-0 end-0" ></i>
+                        <div class="page-loading" *ngIf="loading">
+                            <div class="spinner-border" role="status"> <span class="visually-hidden">Loading...</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card-body d-flex align-items-center justify-content-between ms-3 text-center profileInfo">
+                        <div class="text-start">
+                            <h5 class="card-title text-dark">{{profileData?.Users?.first_name}} {{profileData?.Users?.middle_name}} {{profileData?.Users?.last_name}}</h5>
+                            <div class="lh-3 otherInfo"><span class="text-dark"><strong>Email :</strong>&nbsp;{{profileData?.Users?.email}}</span>&nbsp;<br/><span class="text-dark"><strong>Mobile Number :</strong>&nbsp;<a class="text-primary" href="tel:{{profileData?.Users?.mobile_number}}">{{profileData?.Users?.mobile_number}}</a></span><br></div>
+                        </div>
+                        <div class="d-flex align-items-center">
+                            <a class="card border-1 pointsCard p-2 mx-2 my-2 shadow-sm"  style="border-color: #3D5EE1 !important; border-radius: 10px;" routerLink="/user-profile/points-detail">
+                                <h5 class="mt-2 mb-2 text-dark fw-bold">My Level</h5>
+                                <div class="roundPoint d-flex align-items-center justify-content-center">
+                                    <span class="totalPoints">50</span>
+                                </div>
+                                <section class="example-section mt-2">
+                                    <mat-progress-bar
+                                        class="example-margin"
+                                        [color]="color"
+                                        [mode]="mode"
+                                        [value]="value"
+                                        [bufferValue]="bufferValue">
+                                    </mat-progress-bar>
+                                </section>
+                                <p class="d-flex justify-content-between align-items-center fw-bold" style="font-size: 12px;"><span>5000 to next level</span> <span>50%</span></p>
+                            </a>
+                            <a class="card border-1 pointsCard p-2 mx-2 my-2 shadow-sm"  style="border-color: #3D5EE1 !important; border-radius: 10px;" routerLink="/user-profile/points-detail">
+                                <h5 class="mt-2 mb-2 text-dark fw-bold">My Level</h5>
+                                <div class="roundPoint d-flex align-items-center justify-content-center">
+                                    <span class="totalPoints">50</span>
+                                </div>
+                                <section class="example-section mt-2">
+                                    <mat-progress-bar
+                                        class="example-margin"
+                                        [color]="color"
+                                        [mode]="mode"
+                                        [value]="value"
+                                        [bufferValue]="bufferValue">
+                                    </mat-progress-bar>
+                                </section>
+                                <p class="d-flex justify-content-between align-items-center fw-bold" style="font-size: 12px;"><span>7000 to next level</span> <span>25%</span></p>
+                            </a>
+                        </div>
+                        
+                    </div>
+                    <div class="card d-flex align-self-start flex-row me-3 my-3 " *ngIf="!isFormEditable">
+                        <div class="col">
+                            <button type="button" class="btn btn-primary" style="background-color: #3D5EE1;" (click)="edit()" >Edit Profile <i class='bx bx-pencil fs-6' style="font-size: 14px;"></i></button>
+                            <!-- <button type="button" class="btn btn-primary px-3" (click)="save()" *ngIf="isFormEditable">Save</button> -->
+                        </div>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+        <div class="col-lg-12 user-profile" [ngClass]="isFormEditable ? 'edit' : 'view'">
+            <hr/>
+            <div class="card">
+                <div class="card-body">
+                    <ul class="nav nav-pills mb-3" role="tablist">
+                        <li class="nav-item border  rounded" role="presentation">
+                            <a class="nav-link active " data-bs-toggle="pill" href="#basic-information" role="tab" aria-selected="true">
+                                <div class="d-flex align-items-center">
+                                    <div class="tab-title">Basic Information</div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="nav-item border  rounded" role="presentation">
+                            <a class="nav-link" data-bs-toggle="pill" href="#emp-business-info" role="tab" aria-selected="false">
+                                <div class="d-flex align-items-center">
+                                    <div class="tab-title">Emp./ Business Info.</div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="nav-item border  rounded" role="presentation">
+                            <a class="nav-link" data-bs-toggle="pill" href="#mentorship-skill" role="tab" aria-selected="false">
+                                <div class="d-flex align-items-center">
+                                    <div class="tab-title">Mentorship and Skill
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="nav-item border  rounded" role="presentation">
+                            <a class="nav-link" data-bs-toggle="pill" href="#work-experience" role="tab" aria-selected="false">
+                                <div class="d-flex align-items-center">
+                                    <div class="tab-title">Work Experience
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="nav-item border  rounded" role="presentation">
+                            <a class="nav-link" data-bs-toggle="pill" href="#education" role="tab" aria-selected="false">
+                                <div class="d-flex align-items-center">
+                                    <div class="tab-title">Education
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <!-- <li class="nav-item border  rounded" role="presentation">
+                            <a class="nav-link" data-bs-toggle="pill" href="#activities" role="tab" aria-selected="false">
+                                <div class="d-flex align-items-center">
+                                    <div class="tab-title">My Activities
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="nav-item border  rounded" role="presentation">
+                            <a class="nav-link" data-bs-toggle="pill" href="#communities" role="tab" aria-selected="false">
+                                <div class="d-flex align-items-center">
+                                    <div class="tab-title">My Communities
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="nav-item border  rounded" role="presentation">
+                            <a class="nav-link" data-bs-toggle="pill" href="#events" role="tab" aria-selected="false">
+                                <div class="d-flex align-items-center">
+                                    <div class="tab-title">My Events
+                                    </div>
+                                </div>
+                            </a>
+                        </li> -->
+                        <li class="nav-item border  rounded" role="presentation">
+                            <a class="nav-link" data-bs-toggle="pill" href="#other" role="tab" aria-selected="false">
+                                <div class="d-flex align-items-center">
+                                    <div class="tab-title">Others
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                    <app-loader *ngIf="loading"></app-loader>
+                    <div class="tab-content" id="pills-tabContent" *ngIf="!loading">
+                        <div class="tab-pane fade show active" id="basic-information" role="tabpanel">
+                            <app-basic-info [profileData]="profileData" [commonData]="commonData" [isFormEditable]="isFormEditable"></app-basic-info>
+                        </div>
+                        <div class="tab-pane fade" id="emp-business-info" role="tabpanel">
+                            <app-emp-business-info [profileData]="profileData" [commonData]="commonData"  [isFormEditable]="isFormEditable"></app-emp-business-info>
+                        </div>
+                        <div class="tab-pane fade" id="mentorship-skill" role="tabpanel">
+                            <app-mentorship [profileData]="profileData" [commonData]="commonData" [isFormEditable]="isFormEditable"></app-mentorship>
+                        </div>
+                        <div class="tab-pane fade" id="work-experience" role="tabpanel">
+                            <app-experience [profileData]="profileData"  [isFormEditable]="isFormEditable"></app-experience>
+                        </div>
+                        <div class="tab-pane fade" id="education" role="tabpanel">
+                            <app-education [profileData]="profileData" [commonData]="commonData" [isFormEditable]="isFormEditable"></app-education>
+                        </div>
+                        <div class="tab-pane fade" id="activities" role="tabpanel">
+                            <!-- <app-my-activities [profileData]="profileData" [commonData]="commonData" [isFormEditable]="isFormEditable"></app-my-activities> -->
+                        </div>
+                        <div class="tab-pane fade" id="communities" role="tabpanel">
+                            <!-- <app-my-communities [profileData]="profileData" [commonData]="commonData" [isFormEditable]="isFormEditable"></app-my-communities> -->
+                        </div>
+                        <div class="tab-pane fade" id="events" role="tabpanel">
+                            <!-- <app-my-events [profileData]="profileData" [commonData]="commonData" [isFormEditable]="isFormEditable"></app-my-events> -->
+                        </div>
+                        <div class="tab-pane fade" id="other" role="tabpanel">
+                            <app-others [profileData]="profileData" [commonData]="commonData" [isFormEditable]="isFormEditable"></app-others>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>

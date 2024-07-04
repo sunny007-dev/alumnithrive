@@ -1,0 +1,26 @@
+.memberImg{
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+.home-button1{
+    background: #36348E;
+    padding: 20px 30px;
+    font-size: 14px;
+    text-transform: uppercase;
+    text-align: center;
+    line-height: 14px;
+    letter-spacing: 2px;
+    a{
+        color: #fff;
+        text-decoration: none;
+    }
+
+    &:hover{
+        background: #FFC53A;
+        a{
+            color: #292929;
+        }
+    }
+}

@@ -1,0 +1,30 @@
+<div mat-dialog-title class="dialog-title">
+    <div class="row align-items-center mb-3">
+        <div class="col-10">  
+            <h4 class="m-0">{{data?.name}}</h4>
+        </div>
+        <div class="col-2">  
+            <!-- <button mat-icon-button style="float: right;" aria-label="close dialog" mat-dialog-close> -->
+            <mat-icon mat-dialog-close>close</mat-icon>
+          <!-- </button> -->
+        </div>
+    </div>
+</div>
+<app-loader *ngIf="loading"></app-loader>
+<mat-dialog-content *ngIf="!loading">   
+    <ng-container *ngIf="getMember.length > 0">
+        <div class="row align-items-center mb-3" *ngFor="let item of getMember">
+            <div class="col-8 col-8 d-flex align-items-center">
+                <img class="memberImg me-2" [src]="item?.profile_pic ? imgUrl + item?.profile_pic : './assets/images/group-leader-1.svg'" alt="img">
+                <p class="fw-bold my-0 mx-2">{{item?.full_name}}</p>
+                <a href="mailto:item?.email">{{item?.email}}</a>
+            </div>
+            <div class="col-4 text-end">
+                <button (click)="viewProfile(item?.id)" class="home-button1 border-0 p-3"><a class="text-capitalize">View Profile</a></button>
+            </div>
+        </div>
+    </ng-container>
+    <ng-container *ngIf="getMember.length == 0">
+        <p>No member found</p>
+    </ng-container>
+</mat-dialog-content>

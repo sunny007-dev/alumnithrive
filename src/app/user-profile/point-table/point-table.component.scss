@@ -1,0 +1,79 @@
+.card{
+    .card-body{
+        .customizeBtn {
+            margin-top: -20px;
+            font-size: 16px;
+            button{
+                background-color: #3D5EE1;
+            }
+        }
+    }
+}.totalPointsCard{
+    .totalPointSection {
+        span {
+            p {
+                font-size: 42px;
+                font-family: roboto-medium;
+            }
+        }
+    }
+    .learnBtn {
+        .btn{
+            font-size: 24px; 
+            font-family:roboto;
+            }
+    }
+    .activity {
+        h5 {
+            font-size: 24px;
+            font-family: roboto-medium;
+        }
+        .taskList {
+            .listItem {
+                font-size: 18px;
+                font-family: roboto;
+                color: #000;
+            }
+            .badgesCount{
+                font-size: 16px;
+                font-family: roboto-medium;
+                color: #000;
+            }
+        }
+    }
+}
+
+.pointsCard {
+    // width: 174px;
+    border-radius: 12px;
+    height:242px;
+    h5{
+        font-size: 24px;
+        text-align: center;
+    }
+    .roundPoint{
+        background-color: black;
+        text-align: center;
+        height: 100px;
+        width: 100px;    
+        margin: auto;
+        -webkit-clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+        clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+        .totalPoints{
+            font-size: 36px;
+            color: #fff;
+            font-family: roboto;
+            font-weight: 500;
+        }
+    }
+    .rewards{
+        span{
+            .rewardImg{
+
+            }
+        }
+    }
+    .rewardTotal{
+        font-family: roboto;
+    }
+}
